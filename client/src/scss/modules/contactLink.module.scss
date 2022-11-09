@@ -1,0 +1,11 @@
+@import "../variables";
+@import "../mixins";
+
+.contactButton {
+  border: none;
+  background-color: inherit;
+  @include flex-center;
+  gap: 8px;
+  @include text-format(400, 16px, 22px)
+
+}

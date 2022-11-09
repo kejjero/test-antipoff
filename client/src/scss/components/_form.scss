@@ -1,0 +1,55 @@
+@import "../mixins";
+@import "../variables";
+
+.form{
+  width: 500px;
+  @include flex-column;
+  @include flex-center-between;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  background-color: $white;
+  border-radius: 16px;
+  padding: 16px;
+
+  &__title {
+    align-self: flex-start;
+    @include text-format(400, 20px, 23px);
+  }
+
+  &__fieldset {
+    width: 100%;
+    border: none;
+  }
+
+  &__submit {
+    margin-top: 8px;
+    width: 100%;
+    padding: 13px 0;
+    background-color: $violet;
+    border-radius: 8px;
+    color: $white;
+    @include text-format(400, 16px, 22px);
+    border: none;
+    cursor: pointer;
+    transition: transform ease-in-out 0.2s, box-shadow ease-in-out 0.2s;
+    box-shadow: 4px 4px 20px rgba(0, 0, 0, 0);
+
+    &:hover {
+      transform: scale(1.01);
+      box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    &:active {
+      transform: scale(1);
+    }
+
+    &_disabled {
+      background-color: $grayDark;
+      cursor: default;
+
+      &:hover {
+        transform: scale(1.00);
+        box-shadow: 4px 4px 20px rgba(0, 0, 0, 0);
+      }
+    }
+  }
+}

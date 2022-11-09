@@ -1,0 +1,37 @@
+@import "../variables";
+@import "../mixins";
+
+.card {
+  @include flex-column;
+  @include flex-center-between;
+  background-color: $white;
+  box-shadow: 0 1px 4px rgba(51, 51, 51, 0.15);
+  border-radius: 10px;
+  padding: 36px 20px 20px 20px;
+  min-height: 263px;
+  cursor: pointer;
+  transition: transform ease-in-out 0.2s, box-shadow ease-in-out 0.2s;
+
+  &:hover {
+    transform: scale(1.03);
+    box-shadow: 0 4px 6px rgba(51, 51, 51, 0.15);
+
+  }
+
+  &__wrapper {
+    @include flex-column;
+    @include flex-center-center;
+  }
+
+  &__avatar {
+    width: 124px;
+    height: 124px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  &__name {
+    @include text-format(400, 20px, 23px);
+    margin-top: 15px;
+  }
+}

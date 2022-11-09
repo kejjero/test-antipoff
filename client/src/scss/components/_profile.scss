@@ -1,0 +1,37 @@
+@import "../variables";
+@import "../mixins";
+
+.profile {
+  width: 100%;
+  margin: 0 auto;
+
+  &__wrapper {
+    max-width: 950px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: auto minmax(150px, 300px);
+    grid-template-rows: 1fr;
+    gap: 130px;
+  }
+
+  &__about {
+    @include flex-column;
+    gap: 30px;
+  }
+
+  &__paragraph {
+    @include text-format(400, 16px, 22px);
+  }
+
+  &__contacts {
+    @include flex-column;
+    gap: 24px;
+  }
+
+  &__contact {
+    background-color: inherit;
+    border: none;
+    @include flex-center;
+    gap: 8px;
+  }
+}

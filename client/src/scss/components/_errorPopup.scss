@@ -1,0 +1,26 @@
+@import "../mixins";
+@import "../variables";
+
+.errorPopup {
+  box-sizing: border-box;
+  max-width: 300px;
+  position: fixed;
+  top: 20px;
+  z-index: 2;
+  padding: 20px 10px;
+  background-color: $grayLight;
+  color: $black;
+  box-shadow: 0 4px 4px rgba(51, 51, 51, 0.20);
+  border-radius: 10px;
+  transform: translateX(-100%);
+  transition: all 0.4s ease-in-out;
+
+  &_visible {
+    transform: translateX(20px);
+  }
+
+  &__text {
+    margin: 0 auto;
+    @include text-format(400, 15px, 18px);
+  }
+}
