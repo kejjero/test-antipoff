@@ -1,0 +1,75 @@
+@import '../variables';
+@import '../mixins';
+@import '../libs/normalize';
+
+.header {
+  width: 100%;
+  min-height: 265px;
+  background-color: $violet;
+  padding: 32px;
+
+  &__wrapper {
+    @include flex-column;
+    margin: 0 auto;
+    max-width: 1280px;
+  }
+
+  &__nav {
+    @include flex-center-between;
+    width: 100%;
+
+    &_back {
+      justify-content: flex-end;
+    }
+  }
+
+  &__catalog {
+    @include flex-column;
+    @include flex-center-center;
+    gap: 15px;
+  }
+
+  &__profile {
+    @include flex-center;
+    gap: 32px;
+    margin: 0 auto;
+    max-width: 950px;
+    width: 100%;
+
+    &-wrapper {
+      @include flex-column;
+      gap: 16px;
+    }
+  }
+
+  &__avatar {
+    width: 187px;
+    height: 187px;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+
+  &__title {
+    @include text-format(400, 64px, 75px);
+    color: $white;
+    text-align: center;
+
+    &_profile {
+      text-align: start;
+    }
+  }
+
+  &__status {
+    @include text-format(400, 32px, 38px);
+    color: $white;
+    font-style: normal;
+
+  }
+
+  &__paragraph {
+    @include text-format(400, 20px, 23px);
+    color: $white;
+    max-width: 846px;
+    text-align: center;
+  }
+}

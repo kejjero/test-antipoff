@@ -1,0 +1,19 @@
+@import "../mixins";
+
+.error {
+  min-height: 250px;
+  width: 100%;
+  @include flex-column;
+  @include flex-center-center;
+  text-align: center;
+  gap: 15px;
+
+  &__title {
+    @include text-format(400, 32px, 40px);
+  }
+
+  &__text {
+    @include text-format(400, 16px, 24px);
+  }
+
+}
