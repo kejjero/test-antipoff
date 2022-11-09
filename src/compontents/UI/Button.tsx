@@ -1,7 +1,7 @@
 import React from "react";
 
 interface IButton {
-    onClick: any
+    onClick?: any
     children: string
     className: any
     type: "button" | "submit"

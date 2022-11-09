@@ -49,7 +49,7 @@ const Main = () => {
             text: text,
             status: true
         }));
-        setTimeout(() =>  dispatch(setErrorPopup({text: text, status: false})), NOTIFICATION_DURATION);
+        setTimeout(() => dispatch(setErrorPopup({text: text, status: false})), NOTIFICATION_DURATION);
     }
 
     return (
