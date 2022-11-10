@@ -6,7 +6,7 @@
   margin: 0 auto;
 
   &__wrapper {
-    max-width: 950px;
+    max-width: 1050px;
     margin: 0 auto;
     display: grid;
     grid-template-columns: auto minmax(150px, 300px);
@@ -16,7 +16,7 @@
 
   &__about {
     @include flex-column;
-    gap: 30px;
+    gap: 20px;
   }
 
   &__paragraph {
@@ -26,12 +26,10 @@
   &__contacts {
     @include flex-column;
     gap: 24px;
+
+    &:hover a {
+      text-decoration: solid $violet;
+    }
   }
 
-  &__contact {
-    background-color: inherit;
-    border: none;
-    @include flex-center;
-    gap: 8px;
-  }
 }

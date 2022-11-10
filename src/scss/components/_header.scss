@@ -6,7 +6,7 @@
   width: 100%;
   min-height: 265px;
   background-color: $violet;
-  padding: 32px;
+  padding: 32px 32px 0 32px;
 
   &__wrapper {
     @include flex-column;
@@ -26,15 +26,19 @@
   &__catalog {
     @include flex-column;
     @include flex-center-center;
-    gap: 15px;
+    gap: 25px;
   }
 
   &__profile {
+    position: absolute;
     @include flex-center;
     gap: 32px;
     margin: 0 auto;
-    max-width: 950px;
+    max-width: 1080px;
     width: 100%;
+    z-index: 2;
+    left: 0;
+    right: 0;
 
     &-wrapper {
       @include flex-column;
@@ -49,10 +53,39 @@
     border-radius: 50%;
   }
 
+  &__button-group {
+    @include flex-center-between;
+    gap: 40px;
+
+    @media screen and (max-width: 520px) {
+      gap: 30px;
+    }
+  }
+
+  &__user {
+    @include flex-center-between;
+    gap: 5px;
+
+    &-info{
+      @include text-format(400, 16px, 18px);
+      color: $white;
+      max-width: 90px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: block;
+      -webkit-box-orient: vertical;
+    }
+  }
+
   &__title {
-    @include text-format(400, 64px, 75px);
+    // в макете межстрочный отступ выезжает за кнопку, так что я его урезал для pixel perfect
+    @include text-format(400, 64px, 56px);
     color: $white;
     text-align: center;
+
+    @media screen and (max-width: 520px) {
+      @include text-format(400, 36px, 42px);
+    }
 
     &_profile {
       text-align: start;
@@ -63,13 +96,18 @@
     @include text-format(400, 32px, 38px);
     color: $white;
     font-style: normal;
-
   }
 
   &__paragraph {
     @include text-format(400, 20px, 23px);
     color: $white;
-    max-width: 846px;
+    max-width: 825px;
     text-align: center;
+    padding-bottom: 30px;
+
+    @media screen and (max-width: 520px) {
+      @include text-format(400, 16px, 19px);
+      padding-bottom: 64px;
+    }
   }
 }

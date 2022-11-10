@@ -6,6 +6,9 @@
   background-color: inherit;
   @include flex-center;
   gap: 8px;
-  @include text-format(400, 16px, 22px)
+  @include text-format(400, 16px, 22px);
 
+  &:hover .contactButton__text {
+    text-decoration: underline;
+  }
 }

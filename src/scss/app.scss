@@ -17,60 +17,11 @@ body {
   min-width: 320px;
 }
 
-.content {
-  padding: 48px 0;
-}
+.section {
+  width: 100%;
+  margin: 48px 0;
 
-.button {
-  text-transform: capitalize;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: transform ease-in-out 0.2s, box-shadow ease-in-out 0.2s;
-  box-shadow: 4px 4px 20px rgba(0, 0, 0, 0);
-
-  &:hover {
-    transform: scale(1.03);
-    box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.2);
-  }
-
-  &:active {
-    transform: scale(1.0);
-  }
-}
-
-.pagination {
-  @include flex-center-between;
-  gap: 10px;
-  margin: 40px 0;
-  min-width: 150px;
-  align-self: center;
-
-  li {
-    cursor: pointer;
-    border-radius: 4px;
-    background-color: $grayLight;
-    transition: transform ease-in-out 0.2s, box-shadow ease-in-out 0.2s;
-    box-shadow: 0 1px 4px rgba(51, 51, 51, 0.15);
-
-    a {
-      padding: 20px;
-      @include text-format(400, 16px, 18px);
-      @include flex-center-center;
-      width: 30px;
-      height: 30px;
-    }
-
-    &:hover {
-      transform: scale(1.13);
-      box-shadow: 0 4px 6px rgba(51, 51, 51, 0.15);
-    }
-  }
-
-  .selected {
-    background-color: $violet;
-
-    a {
-      color: $white;
-    }
+  @media screen and (max-width: 520px) {
+    margin: 32px 0;
   }
 }
