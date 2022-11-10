@@ -5,7 +5,7 @@ import {CLEAR_USER} from "../../utils/constants";
 
 const initialState: initialStateForm = {
     eyeStatus: false,
-    isLoggedIn: true,
+    isLoggedIn: false,
     user: CLEAR_USER,
     isLoading: false,
     errorPopup: {
