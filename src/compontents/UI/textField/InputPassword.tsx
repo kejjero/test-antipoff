@@ -1,5 +1,5 @@
-import React, {forwardRef, useState} from "react";
-import {ICONS_EYE} from "../../../utils/constants"
+import React, {forwardRef} from "react";
+import {Icons} from "../icons/Icons"
 import {selectAuth, setEyeStatus} from "../../../redux/auth/authSlice";
 import {useDispatch, useSelector} from "react-redux";
 
@@ -8,7 +8,7 @@ const InputPassword: React.FC<any> = forwardRef((props, ref) => {
     const {eyeStatus} = useSelector(selectAuth);
     const dispatch = useDispatch()
 
-    const onClickEye = () => {
+    const onClickEye = () : void => {
         dispatch(setEyeStatus())
     }
 
@@ -21,20 +21,17 @@ const InputPassword: React.FC<any> = forwardRef((props, ref) => {
                     type={eyeStatus ? "text" : "password"}
                     className={`textField__input textField__input_password ${!!error && "textField__input_error"}`}
                     placeholder={placeholder}
-                    pattern="^[^\s]+(\s.*)?$"
+                    pattern="^[^\s]+(\s.*)?$" // запрещаем ввод пробелов
                     onChange={(evt) => onChange(evt.target.value)}
-                    autocomplete="off"
+                    autocomplete="on"
                     />
-                <img
-                    className="textField__eye"
-                    src={eyeStatus ? ICONS_EYE.on : ICONS_EYE.off}
-                    alt="глаз"
-                    onClick={() => onClickEye()}
-                />
+                <button type="button" className="textField__eye" onClick={() => onClickEye()}>
+                    { eyeStatus ? <Icons.EyeOn/> : <Icons.EyeOff/>}
+                </button>
             </div>
             { !!error && <span className="textField__error">{textError}</span> }
         </React.Fragment>
     )
 })
 
-export default InputPassword;
+export default React.memo(InputPassword);

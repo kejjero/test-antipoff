@@ -1,5 +1,6 @@
 export type initialStateCatalog = {
-    team: []
+    partners: []
+    favoritePartners: any
     statusTeam: 'loading' | 'success' | 'error'
     currentPage: number
     totalPages: number

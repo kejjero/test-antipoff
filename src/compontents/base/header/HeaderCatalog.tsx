@@ -1,4 +1,6 @@
-const HeaderCatalog = () => {
+import React from "react";
+
+const HeaderCatalog: React.FC = () => {
     return (
         <div className="header__catalog">
             <h1 className="header__title">Наша команда</h1>

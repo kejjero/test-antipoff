@@ -2,9 +2,11 @@ import {createSlice} from "@reduxjs/toolkit"
 import {fetchTeam} from "./asyncActions"
 import {initialStateCatalog} from "./types"
 import {RootState} from "../store"
+import {getFavoritePartners} from "../../utils/getFavoritePartners";
 
 const initialState: initialStateCatalog = {
-    team: [],
+    partners: [],
+    favoritePartners: getFavoritePartners(),
     statusTeam: 'loading',
     currentPage: 1,
     totalPages: 3,
@@ -17,16 +19,25 @@ const catalogSlice = createSlice({
         setCurrentPage(state, action) {
             state.currentPage = action.payload
         },
+        postFavoritePartner(state, actions) {
+            state.favoritePartners = [...state.favoritePartners, actions.payload]
+        },
+        deleteFavoritePartner(state, actions) {
+            state.favoritePartners = actions.payload
+        },
+        resetFavorites(state) {
+            state.favoritePartners = []
+        },
     },
 
     extraReducers: (builder) => {
         builder.addCase(fetchTeam.pending, (state) => {
-            state.team = [];
+            state.partners = [];
             state.statusTeam = 'loading';
         });
 
         builder.addCase(fetchTeam.fulfilled, (state, action) => {
-            state.team = action.payload.data;
+            state.partners = action.payload.data;
             state.totalPages = action.payload.total_pages;
             state.currentPage = action.payload.page;
             state.statusTeam = 'success'
@@ -34,11 +45,11 @@ const catalogSlice = createSlice({
 
         builder.addCase(fetchTeam.rejected, (state) => {
             state.statusTeam = 'error'
-            state.team = [];
+            state.partners = [];
         });
     },
 });
 
-export const {setCurrentPage} = catalogSlice.actions;
+export const {setCurrentPage, postFavoritePartner, deleteFavoritePartner, resetFavorites} = catalogSlice.actions;
 export default catalogSlice.reducer;
 export const selectCatalog = (state: RootState) => state.catalogReducer

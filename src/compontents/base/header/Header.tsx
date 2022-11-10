@@ -1,28 +1,39 @@
 import Button from "../../UI/Button";
 import style from "../../../scss/modules/navButton.module.scss"
-import {selectBase} from "../../../redux/base/baseSlice"
+import {selectBase, selectWidth, getCurrentWidth} from "../../../redux/base/baseSlice"
 import {useDispatch, useSelector} from "react-redux";
-import {Link, useLocation, useNavigate} from "react-router-dom";
+import {Link, useLocation} from "react-router-dom";
 import {HeaderCatalog, HeaderProfile} from "../../index"
-import {setIsLoggedIn, setUser} from "../../../redux/auth/authSlice";
+import {selectAuth, setIsLoggedIn, setUser} from "../../../redux/auth/authSlice";
 import {CLEAR_USER} from "../../../utils/constants";
+import React, {useEffect} from "react";
+import {Icons} from "../../UI/icons/Icons"
+import {resetFavorites} from "../../../redux/catalog/catalogSlice";
 
-const Header = () => {
+const Header: React.FC = () => {
     const {activeBase} = useSelector(selectBase)
+    const {user} = useSelector(selectAuth)
     const location = useLocation();
     const isProfile = location.pathname.split("/").some(item => item === 'profile'); // определяет страницу с профилем
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
+    const width = useSelector(selectWidth);
 
-    // Удаляет токен и очищает профиль пользователя
+    // Получаем ширину для корректного отображения верстки под десктоп и мобайл
+    useEffect(() => {
+        dispatch(getCurrentWidth(window.screen.width))
+    }, [])
+
+    // Удаляет токен, избранное и очищает профиль пользователя
     const onClickLogoutButton = () => {
         localStorage.removeItem("token");
         dispatch(setIsLoggedIn(false))
         dispatch(setUser(CLEAR_USER))
+        dispatch(resetFavorites())
     }
 
-    // По необходимости аннулируется хедер в нужных нам секциях
+    // Сбрасывает хедер на нужных нам страницах (для сохранения симантики)
     if (!activeBase) {
-        return <header></header>
+        return <header/>
     }
 
     return (
@@ -37,20 +48,25 @@ const Header = () => {
                             </Button>
                         </Link>
                     }
-                    <Link to="/signup">
-                        <Button type="button" onClick={onClickLogoutButton} className={style.navButton}>
-                            Выход
-                        </Button>
-                    </Link>
+                    <div className="header__button-group">
+                        {user.name && <p className="header__user">
+                            <Icons.User/> <span className="header__user-info">{user.name}</span>
+                        </p>}
+                        <Link to="/signup">
+                            <Button
+                                type="button"
+                                onClick={onClickLogoutButton}
+                                className={width > 520 ? style.navButton : ''}
+                            >
+                                { width > 520 ? 'Выйти' : <Icons.Exit/> }
+                            </Button>
+
+                        </Link>
+                    </div>
                 </nav>
-                {
-                    isProfile ?
-                        <HeaderProfile/>
-                        :
-                        <HeaderCatalog/>
-                }
+                {isProfile ? <HeaderProfile/> : <HeaderCatalog/>}
             </div>
         </header>
     )
 }
-export default Header;
+export default React.memo(Header);

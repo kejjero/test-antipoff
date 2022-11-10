@@ -10,7 +10,8 @@ const InputDefault: React.FC<any> = forwardRef((props, ref) => {
                 {...props}
                 className={`textField__input ${!!error && "textField__input_error"}`}
                 onChange={(evt) => onChange(evt.target.value)}
-                autocomplete="[on]"
+                autocomplete="on"
+                pattern="^[^\s]+(\s.*)?$" // запрещаем ввод пробелов
             />
             {
                 !!error &&
@@ -20,4 +21,4 @@ const InputDefault: React.FC<any> = forwardRef((props, ref) => {
     )
 })
 
-export default InputDefault;
+export default React.memo(InputDefault);
