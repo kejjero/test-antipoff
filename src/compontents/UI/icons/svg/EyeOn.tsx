@@ -1,4 +1,6 @@
-const EyeOn = () => (
+import React from "react";
+
+const EyeOn: React.FC = () => (
     <svg xmlns="http://www.w3.org/2000/svg" id="Слой_1" data-name="Слой 1" viewBox="0 0 24 24">
         <path d="M12 14.3a2.4 2.4 0 0 0 2.3-2.3A2.4 2.4 0 0 0 12 9.7 2.4 2.4 0 0 0 9.7 12a2.4 2.4 0 0 0 2.3 2.3Z"
               fill="none"/>

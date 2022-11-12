@@ -1,5 +1,5 @@
-import {Exit, User, Phone, Email, EyeOff, EyeOn} from "./index"
+import {Exit, User, Phone, Email, EyeOff, EyeOn, Back} from "./index"
 
 export const Icons = {
-    Exit, User, Phone, Email, EyeOff, EyeOn
+    Exit, User, Phone, Email, EyeOff, EyeOn, Back
 }
