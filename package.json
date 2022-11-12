@@ -2,7 +2,7 @@
   "name": "test-antipoff",
   "version": "0.1.0",
   "private": true,
-  "homePage": "https://kejjero.github.io/test-antipoff/",
+  "homepage": ".",
   "dependencies": {
     "@hookform/resolvers": "^2.9.10",
     "@reduxjs/toolkit": "^1.9.0",
