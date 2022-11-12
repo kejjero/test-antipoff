@@ -37,7 +37,7 @@ const Header: React.FC = () => {
                 <nav className={`header__nav ${!isProfile ? "header__nav_back" : ""}`}>
                     {
                         isProfile &&
-                        <Link to="/">
+                        <Link to="/test-antipoff">
                             <Button type="button" className={width > 520 ? style.navButton : ''}>
                                 { width > 520 ? 'Назад' : <Icons.Back/> }
                             </Button>
