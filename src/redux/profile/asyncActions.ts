@@ -1,8 +1,9 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
 import axios from "axios";
+import {IPartnerApi} from "../../assets/types";
+import {PARTNERS_API} from "../../utils/constants";
 
-export const fetchProfile:any = createAsyncThunk('profileData/fetchProfile', async (profileId) => {
-    const {data} = await axios.get(`https://reqres.in/api/users?id=${profileId}`)
-    return data
+export const fetchProfile = createAsyncThunk<IPartnerApi, string>('profileData/fetchProfile', async (profileId: string) => {
+    const {data} = await axios.get(`${PARTNERS_API}/users?id=${profileId}`)
+    return data.data
 })
-
