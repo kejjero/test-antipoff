@@ -1,12 +1,13 @@
 import React, {useEffect} from "react";
-import "../../scss/app.scss"
-import {Header, Main, Footer} from "../index"
-import {selectAuth, setErrorPopup, setIsLoggedIn, setUser} from "../../redux/auth/authSlice";
-import {getCurrentUserInfo} from "../../redux/auth/auth";
-import {NOTIFICATION_DURATION} from "../../utils/constants";
+import "./scss/app.scss"
+import {Header, Main, Footer} from "./compontents"
+import {selectAuth, setErrorPopup, setIsLoggedIn, setUser} from "./redux/auth/authSlice";
+import {NOTIFICATION_DURATION} from "./utils/constants";
 import {useLocation, useNavigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import {selectCatalog} from "../../redux/catalog/catalogSlice";
+import {selectCatalog} from "./redux/catalog/catalogSlice";
+import {getCurrentUserInfo} from "./redux/auth/auth";
+import {getCurrentWidth} from "./redux/base/baseSlice";
 
 const App: React.FC = () => {
     const navigate = useNavigate()
@@ -19,6 +20,12 @@ const App: React.FC = () => {
     useEffect(() => {
         window.scrollTo(0, 0);
     }, [location.pathname])
+
+    // Получает ширину дисплея для корректного отображения верстки под десктоп и мобайл
+    useEffect(() => {
+        dispatch(getCurrentWidth(window.screen.width))
+    }, [])
+
 
     // Если получен токен, пользователя перебрасывает на главную страницу
     useEffect(() => {
@@ -35,7 +42,7 @@ const App: React.FC = () => {
     // Если пользователь авторизован, запрашиваем данные текущего пользователя
     useEffect(() => {
         if (isLoggedIn) {
-            getCurrentUserInfo(token)
+            getCurrentUserInfo(String(token))
                 .then(([response]) => dispatch(setUser(response)))
                 .catch((e) => {
                     showPopupError(e.message)
@@ -67,7 +74,7 @@ const App: React.FC = () => {
         } else {
             localStorage.removeItem('partners')
         }
-    },[favoritePartners, isLoggedIn])
+    }, [favoritePartners, isLoggedIn])
 
     return (
         <div className="app">
