@@ -2,6 +2,10 @@
 @import 'components/all';
 @import 'mixins';
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: $fontFamily;
   color: $black;
@@ -19,7 +23,7 @@ body {
 
 .section {
   width: 100%;
-  margin: 48px 0;
+  margin: 48px auto;
 
   @media screen and (max-width: 520px) {
     margin: 32px 0;

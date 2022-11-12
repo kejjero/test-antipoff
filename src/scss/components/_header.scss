@@ -8,6 +8,10 @@
   background-color: $violet;
   padding: 32px 32px 0 32px;
 
+  @media screen and (max-width: 760px) {
+    padding: 20px 32px 0 32px;
+  }
+
   &__wrapper {
     @include flex-column;
     margin: 0 auto;
@@ -17,6 +21,7 @@
   &__nav {
     @include flex-center-between;
     width: 100%;
+    z-index: 2;
 
     &_back {
       justify-content: flex-end;
@@ -27,6 +32,11 @@
     @include flex-column;
     @include flex-center-center;
     gap: 25px;
+
+    @media screen and (max-width: 760px) {
+      margin-top: 12px;
+      gap: 15px;
+    }
   }
 
   &__profile {
@@ -36,13 +46,32 @@
     margin: 0 auto;
     max-width: 1080px;
     width: 100%;
-    z-index: 2;
+    z-index: 1;
     left: 0;
     right: 0;
+    padding-bottom: 32px;
+
+    @media screen and (max-width: 1340px) {
+      justify-content: center;
+    }
+
+    @media screen and (max-width: 760px) {
+      flex-direction: column;
+      position: relative;
+      gap: 16px;
+      padding-bottom: 64px;
+    }
 
     &-wrapper {
       @include flex-column;
       gap: 16px;
+
+      @media screen and (max-width: 760px) {
+        text-align: center;
+        gap: 12px;
+        margin-top: 24px;
+        min-height: 70px;
+      }
     }
   }
 
@@ -51,6 +80,11 @@
     height: 187px;
     object-fit: cover;
     border-radius: 50%;
+    z-index: 1;
+
+    @media screen and (max-width: 760px) {
+      order: 2;
+    }
   }
 
   &__button-group {
@@ -96,6 +130,11 @@
     @include text-format(400, 32px, 38px);
     color: $white;
     font-style: normal;
+
+    @media screen and (max-width: 520px) {
+      @include text-format(400, 20px, 23px);
+    }
+
   }
 
   &__paragraph {

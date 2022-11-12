@@ -10,4 +10,8 @@
   right: 0;
   bottom: 0;
 
+  @media screen and (max-width: 520px) {
+    min-height: 100%;
+    top: 64px;
+  }
 }
