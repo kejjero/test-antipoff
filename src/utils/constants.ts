@@ -1,17 +1,22 @@
 import clearPhoto from "../images/clearPhoto.jpeg"
 
+// API авторизации пользователя
+export const AUTH_API = process.env.REACT_APP_API_AUTH;
+
+// API партнеров
+export const PARTNERS_API = process.env.REACT_APP_API_PARTNERS
+
 // Количество карточек на страницу
 export const PER_PAGE_DESKTOP = 8
 export const PER_PAGE_MOBILE = 4
-
 
 // Шаблон пустого профиля
 export const CLEAR_PROFILE = {
     id: 0,
     email: '',
     avatar: clearPhoto,
-    first_name: '',
-    last_name: ''
+    firstName: '',
+    lastName: ''
 }
 
 // Шаблон отсутствия пользователя
