@@ -1,20 +1,22 @@
 import React, {useEffect, useState} from "react";
-import {setChangeBase} from "../redux/base/baseSlice";
+import {setChangeBase} from "../../redux/base/baseSlice";
 import {useDispatch, useSelector} from "react-redux";
-import TextField from "../compontents/UI/textField/TextField";
-import {useForm} from "react-hook-form";
-import Form from "../compontents/UI/Form";
+import TextField from "../../compontents/UI/textField/TextField";
+import {FieldValues, useForm} from "react-hook-form";
+import Form from "../../compontents/UI/Form";
 import {yupResolver} from "@hookform/resolvers/yup";
-import {setIsLoggedIn, selectAuth, setIsLoading} from "../redux/auth/authSlice";
-import {postUserData, authorize} from "../redux/auth/auth"
+import {setIsLoggedIn, selectAuth, setIsLoading} from "../../redux/auth/authSlice";
 import {useNavigate} from "react-router-dom";
 import * as yup from "yup";
+import {postUserData, authorize} from "../../redux/auth/auth"
+import {IRegister} from "../types";
+import {authInfoType, userInfoType} from "../../assets/types";
 
-const Register: React.FC<any> = ({showPopupError}) => {
+const Register: React.FC<IRegister> = ({showPopupError}) => {
+    const [isErrors, setIsErrors] = useState<boolean>(false);
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const {isLoading} = useSelector(selectAuth);
-    const [isErrors, setIsErrors] = useState<boolean>(false)
 
     // Схема валидации для формы регистрации
     const Schema = yup.object().shape({
@@ -38,17 +40,18 @@ const Register: React.FC<any> = ({showPopupError}) => {
         resolver: yupResolver(Schema)
     });
 
-    // проверка на наличие всех ошибок в форме
-
+    // проверяет на наличие всех ошибок в форме
+    const existErrors = Object.keys(errors).length
     useEffect(() => {
-        setIsErrors(Object.keys(errors).length !== 0)
-    }, [Object.keys(errors).length])
+        setIsErrors(existErrors !== 0)
+    }, [existErrors])
 
-    const registerUser = (name: string, email: string, password: string) => {
+
+    const registerUser = (userData: userInfoType) => {
         dispatch(setIsLoading(true));
-        postUserData(name, email, password)  // запрашивает к api, регистрацию нового пользователя
+        postUserData(userData)  // запрашивает к api, регистрацию нового пользователя
             .then((res) => {
-                if (res) loginUser(email, password);  // авторизовывает нового пользователя при успешном ответе
+                if (res) loginUser({email: userData.email, password: userData.password});  // авторизовывает нового пользователя при успешном ответе
             })
             .catch((e) => e.json())
             .then((e) => {
@@ -58,10 +61,11 @@ const Register: React.FC<any> = ({showPopupError}) => {
             .finally(() => dispatch(setIsLoading(false)))
     }
 
+
     // авторизация
-    const loginUser = (email: string, password: string) => {
+    const loginUser = (data: authInfoType) => {
         dispatch(setIsLoading(true));
-        authorize(email, password)
+        authorize(data)
             .then((data) => {
                 if (data.token) {
                     dispatch(setIsLoggedIn(true));
@@ -77,10 +81,14 @@ const Register: React.FC<any> = ({showPopupError}) => {
             .finally(() => setIsLoading(false));
     }
 
-    const onSubmit = (data: any) => {
+    const onSubmit = (data: FieldValues) => {
         if (!isErrors) {
-            registerUser(data.firstName, data.email, data.password)
             //регистрирует пользователя после пройденной валидации
+            registerUser({
+                name: data.firstName,
+                email: data.email,
+                password: data.password
+            })
         }
     }
 
@@ -117,7 +125,6 @@ const Register: React.FC<any> = ({showPopupError}) => {
                 <TextField
                     label="Подтвердите пароль"
                     type="password"
-                    checkPassword
                     error={!!errors.passwordReplay}
                     textError={errors?.passwordReplay?.message}
                     {...register("passwordReplay")}

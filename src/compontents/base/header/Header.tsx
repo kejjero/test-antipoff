@@ -12,19 +12,14 @@ import {resetFavorites} from "../../../redux/catalog/catalogSlice";
 
 const Header: React.FC = () => {
     const {activeBase} = useSelector(selectBase)
-    const {user} = useSelector(selectAuth)
+    const {userProfile} = useSelector(selectAuth)
     const location = useLocation();
     const isProfile = location.pathname.split("/").some(item => item === 'profile'); // определяет страницу с профилем
     const dispatch = useDispatch();
     const width = useSelector(selectWidth);
 
-    // Получаем ширину для корректного отображения верстки под десктоп и мобайл
-    useEffect(() => {
-        dispatch(getCurrentWidth(window.screen.width))
-    }, [])
-
     // Удаляет токен, избранное и очищает профиль пользователя
-    const onClickLogoutButton = () => {
+    const onClickLogoutButton = (): void => {
         localStorage.removeItem("token");
         dispatch(setIsLoggedIn(false))
         dispatch(setUser(CLEAR_USER))
@@ -43,19 +38,19 @@ const Header: React.FC = () => {
                     {
                         isProfile &&
                         <Link to="/">
-                            <Button type="button" className={style.navButton}>
-                                Назад
+                            <Button type="button" className={width > 520 ? style.navButton : ''}>
+                                { width > 520 ? 'Назад' : <Icons.Back/> }
                             </Button>
                         </Link>
                     }
                     <div className="header__button-group">
-                        {user.name && <p className="header__user">
-                            <Icons.User/> <span className="header__user-info">{user.name}</span>
+                        {userProfile.name && <p className="header__user">
+                            <Icons.User/> <span className="header__user-info">{userProfile.name}</span>
                         </p>}
                         <Link to="/signup">
                             <Button
                                 type="button"
-                                onClick={onClickLogoutButton}
+                                onClick={() => onClickLogoutButton()}
                                 className={width > 520 ? style.navButton : ''}
                             >
                                 { width > 520 ? 'Выйти' : <Icons.Exit/> }

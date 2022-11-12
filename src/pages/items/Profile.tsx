@@ -1,20 +1,21 @@
 import {useEffect} from "react";
-import {setChangeBase} from "../redux/base/baseSlice";
-import {selectProfile} from "../redux/profile/profileSlice"
+import {setChangeBase} from "../../redux/base/baseSlice";
+import {selectProfile} from "../../redux/profile/profileSlice"
 import {useDispatch, useSelector} from "react-redux";
 import {useLocation} from "react-router-dom";
-import {fetchProfile} from "../redux/profile/asyncActions"
-import ContactLink from "../compontents/UI/ContactLink";
-import {Icons} from "../compontents/UI/icons/Icons"
+import {fetchProfile} from "../../redux/profile/asyncActions"
+import ContactLink from "../../compontents/UI/ContactLink";
+import {Icons} from "../../compontents/UI/icons/Icons"
 import React from "react";
-import {ErrorGetData} from "../compontents";
+import {ErrorGetData} from "../../compontents";
+import {AppDispatch} from "../../redux/store";
 
-const Profile = () => {
+const Profile: React.FC = () => {
     const location = useLocation();
-    const dispatch = useDispatch();
+    const dispatch = useDispatch<AppDispatch>();
     const {profile, statusProfile} = useSelector(selectProfile);
-    let currentId: string | string[] = location.pathname.split("/");
-    currentId = currentId[currentId.length - 1]; // получает id из URL
+    const currentIdArray: string[] = location.pathname.split("/")
+    const currentId: string = currentIdArray[currentIdArray.length - 1] // получает id из URL
 
     // получает профиль по запросу
     useEffect(() => {
