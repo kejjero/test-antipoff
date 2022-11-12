@@ -4,3 +4,4 @@ export {default as Phone} from './svg/Phone';
 export {default as Email} from './svg/Email';
 export {default as EyeOff} from './svg/EyeOff';
 export {default as EyeOn} from './svg/EyeOn';
+export {default as Back} from './svg/Back';

@@ -1,4 +1,4 @@
-export {default as Catalog} from './Catalog';
-export {default as NotFound} from './NotFound';
-export {default as Profile} from './Profile';
-export {default as Register} from './Register';
+export {default as Catalog} from './items/Catalog';
+export {default as NotFound} from './items/NotFound';
+export {default as Profile} from './items/Profile';
+export {default as Register} from './items/Register';
