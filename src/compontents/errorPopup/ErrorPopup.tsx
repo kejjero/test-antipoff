@@ -2,7 +2,7 @@ import React from "react";
 import {useSelector} from "react-redux";
 import {selectAuth} from "../../redux/auth/authSlice";
 
-const ErrorPopup:React.FC<any> = () => {
+const ErrorPopup:React.FC = () => {
     const {errorPopup} = useSelector(selectAuth)
     return (
         <div className={`errorPopup ${errorPopup.status ? "errorPopup_visible" : ""}`}>

@@ -6,7 +6,11 @@
   width: 100%;
   min-height: 265px;
   background-color: $violet;
-  padding: 32px;
+  padding: 32px 32px 0 32px;
+
+  @media screen and (max-width: 760px) {
+    padding: 20px 32px 0 32px;
+  }
 
   &__wrapper {
     @include flex-column;
@@ -17,6 +21,7 @@
   &__nav {
     @include flex-center-between;
     width: 100%;
+    z-index: 2;
 
     &_back {
       justify-content: flex-end;
@@ -26,19 +31,47 @@
   &__catalog {
     @include flex-column;
     @include flex-center-center;
-    gap: 15px;
+    gap: 25px;
+
+    @media screen and (max-width: 760px) {
+      margin-top: 12px;
+      gap: 15px;
+    }
   }
 
   &__profile {
+    position: absolute;
     @include flex-center;
     gap: 32px;
     margin: 0 auto;
-    max-width: 950px;
+    max-width: 1080px;
     width: 100%;
+    z-index: 1;
+    left: 0;
+    right: 0;
+    padding-bottom: 32px;
+
+    @media screen and (max-width: 1340px) {
+      justify-content: center;
+    }
+
+    @media screen and (max-width: 760px) {
+      flex-direction: column;
+      position: relative;
+      gap: 16px;
+      padding-bottom: 64px;
+    }
 
     &-wrapper {
       @include flex-column;
       gap: 16px;
+
+      @media screen and (max-width: 760px) {
+        text-align: center;
+        gap: 12px;
+        margin-top: 24px;
+        min-height: 70px;
+      }
     }
   }
 
@@ -47,12 +80,46 @@
     height: 187px;
     object-fit: cover;
     border-radius: 50%;
+    z-index: 1;
+
+    @media screen and (max-width: 760px) {
+      order: 2;
+    }
+  }
+
+  &__button-group {
+    @include flex-center-between;
+    gap: 40px;
+
+    @media screen and (max-width: 520px) {
+      gap: 30px;
+    }
+  }
+
+  &__user {
+    @include flex-center-between;
+    gap: 5px;
+
+    &-info{
+      @include text-format(400, 16px, 18px);
+      color: $white;
+      max-width: 90px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: block;
+      -webkit-box-orient: vertical;
+    }
   }
 
   &__title {
-    @include text-format(400, 64px, 75px);
+    // в макете межстрочный отступ выезжает за кнопку, так что я его урезал для pixel perfect
+    @include text-format(400, 64px, 56px);
     color: $white;
     text-align: center;
+
+    @media screen and (max-width: 520px) {
+      @include text-format(400, 36px, 42px);
+    }
 
     &_profile {
       text-align: start;
@@ -64,12 +131,22 @@
     color: $white;
     font-style: normal;
 
+    @media screen and (max-width: 520px) {
+      @include text-format(400, 20px, 23px);
+    }
+
   }
 
   &__paragraph {
     @include text-format(400, 20px, 23px);
     color: $white;
-    max-width: 846px;
+    max-width: 825px;
     text-align: center;
+    padding-bottom: 30px;
+
+    @media screen and (max-width: 520px) {
+      @include text-format(400, 16px, 19px);
+      padding-bottom: 64px;
+    }
   }
 }

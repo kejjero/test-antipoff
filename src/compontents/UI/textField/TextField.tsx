@@ -1,10 +1,11 @@
 import React, {forwardRef, useState} from "react";
 import InputDefault from "./InputDefault";
 import InputPassword from "./InputPassword";
+import {ITextField} from "../types";
 
-const TextField: React.FC<any> = forwardRef((props, ref) => {
-    const {label, type} = props;
+const TextField: React.FC<ITextField> = forwardRef((props, ref) => {
     const [value, setValue] = useState<string>('')
+    const {label, type="text"} = props;
 
     const onChangeValue = (value: string) => {
         const validation = value.replace(/\s/g, "")

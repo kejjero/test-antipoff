@@ -3,20 +3,39 @@
 
 .profile {
   width: 100%;
-  margin: 0 auto;
+  padding: 0 35px;
+
+  @media screen and (max-width: 760px) {
+    padding: 0 16px;
+  }
 
   &__wrapper {
-    max-width: 950px;
+    max-width: 1050px;
     margin: 0 auto;
     display: grid;
     grid-template-columns: auto minmax(150px, 300px);
     grid-template-rows: 1fr;
+    grid-template-areas: "about" "contacts";
     gap: 130px;
+
+    @media screen and (max-width: 940px) {
+      gap: 80px;
+    }
+
+    @media screen and (max-width: 760px) {
+      gap: 32px;
+      display: flex;
+      flex-direction: column;
+    }
   }
 
   &__about {
     @include flex-column;
-    gap: 30px;
+    gap: 20px;
+
+    @media screen and (max-width: 760px) {
+      order: 1;
+    }
   }
 
   &__paragraph {
@@ -26,12 +45,10 @@
   &__contacts {
     @include flex-column;
     gap: 24px;
+
+    &:hover a {
+      text-decoration: solid $violet;
+    }
   }
 
-  &__contact {
-    background-color: inherit;
-    border: none;
-    @include flex-center;
-    gap: 8px;
-  }
 }

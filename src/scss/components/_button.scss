@@ -1,0 +1,20 @@
+@import "../variables";
+
+.button {
+  text-transform: capitalize;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform ease-in-out 0.2s, box-shadow ease-in-out 0.2s;
+  box-shadow: 4px 4px 20px rgba(0, 0, 0, 0);
+  background-color: inherit;
+  color: $grayLight;
+  border: none;
+
+  &:hover {
+    transform: scale(1.03);
+  }
+
+  &:active {
+    transform: scale(1.0);
+  }
+}

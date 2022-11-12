@@ -2,19 +2,35 @@
 @import "../mixins";
 
 .catalog {
+  @include flex-center-center;
   width: 100%;
 
   &__wrapper {
-    margin: 0 auto;
+    margin: 0 35px;
+    width: 100%;
     max-width: 1280px;
     @include flex-column;
+
   }
 
   &__cards {
     display: grid;
     grid-template-rows: repeat(auto-fill, 263px);
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(4, minmax(260px, 1fr));
     gap: 20px;
     min-height: 100%;
+    width: 100%;
+    @media screen and (max-width: 1240px) {
+      grid-template-columns: repeat(3, minmax(280px, 1fr));
+    }
+
+    @media screen and (max-width: 1000px) {
+      grid-template-columns: repeat(2, minmax(280px, 1fr));
+      margin: 0;
+    }
+
+    @media screen and (max-width: 650px) {
+      grid-template-columns: repeat(1, minmax(280px, 1fr));
+    }
   }
 }

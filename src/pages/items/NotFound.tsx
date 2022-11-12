@@ -1,9 +1,9 @@
-import style from "../scss/modules/notFound.module.scss"
-import {useEffect} from "react";
-import {setChangeBase} from "../redux/base/baseSlice";
+import style from "../../scss/modules/notFound.module.scss"
+import React, {useEffect} from "react";
+import {setChangeBase} from "../../redux/base/baseSlice";
 import {useDispatch} from "react-redux";
 
-const NotFound = () => {
+const NotFound: React.FC = () => {
     const dispatch = useDispatch()
 
     useEffect(() => {

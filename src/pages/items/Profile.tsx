@@ -1,31 +1,33 @@
 import {useEffect} from "react";
-import {setChangeBase} from "../redux/base/baseSlice";
-import {selectProfile} from "../redux/profile/profileSlice"
+import {setChangeBase} from "../../redux/base/baseSlice";
+import {selectProfile} from "../../redux/profile/profileSlice"
 import {useDispatch, useSelector} from "react-redux";
 import {useLocation} from "react-router-dom";
-import {fetchProfile} from "../redux/profile/asyncActions"
-import ContactLink from "../compontents/UI/ContactLink";
-import {ICONS_CONTACT} from "../utils/constants"
+import {fetchProfile} from "../../redux/profile/asyncActions"
+import ContactLink from "../../compontents/UI/ContactLink";
+import {Icons} from "../../compontents/UI/icons/Icons"
 import React from "react";
-import {ErrorGetData} from "../compontents";
+import {ErrorGetData} from "../../compontents";
+import {AppDispatch} from "../../redux/store";
 
-const Profile = () => {
+const Profile: React.FC = () => {
     const location = useLocation();
-    const dispatch = useDispatch();
+    const dispatch = useDispatch<AppDispatch>();
     const {profile, statusProfile} = useSelector(selectProfile);
-    let currentId: string | string[] = location.pathname.split("/");
-    currentId = currentId[currentId.length - 1];
+    const currentIdArray: string[] = location.pathname.split("/")
+    const currentId: string = currentIdArray[currentIdArray.length - 1] // получает id из URL
 
+    // получает профиль по запросу
     useEffect(() => {
         dispatch(fetchProfile(currentId))
         dispatch(setChangeBase(true))
     }, [])
 
     // К сожалению api из ТЗ не возвращает текст и номер телефона, пришлось параграф сделать вставкой из макета.
-    // Не стал мудрить, но по необходимости могу что-нибудь придумать :)
+    // По необходимости могу что-нибудь придумать :)
 
     return (
-        <section className="profile">
+        <section className="section profile">
             {
                 statusProfile === "error" ? <ErrorGetData/>
                     :
@@ -54,12 +56,17 @@ const Profile = () => {
                             </p>
                         </div>
                         <div className="profile__contacts">
-                            <ContactLink href="tel: +79543334455" icon={ICONS_CONTACT.phone}>
-                                +7 (954) 333-44-55
-                            </ContactLink>
-                            <ContactLink href={`mailto: ${profile.email}`} icon={ICONS_CONTACT.email}>
-                                {profile.email}
-                            </ContactLink>
+                            {
+                                profile.email.length &&
+                                <React.Fragment>
+                                    <ContactLink href="tel: +79543334455" icon={<Icons.Phone/>}>
+                                        +7 (954) 333-44-55
+                                    </ContactLink>
+                                    <ContactLink href={`mailto: ${profile.email}`} icon={<Icons.Email/>}>
+                                        {profile.email}
+                                    </ContactLink>
+                                </React.Fragment>
+                            }
                         </div>
                     </div>
             }

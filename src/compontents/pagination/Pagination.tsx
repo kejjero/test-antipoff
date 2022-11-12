@@ -1,9 +1,9 @@
 import ReactPaginate from "react-paginate";
 import React from "react";
+import {IPagination} from "./types";
 
-const Pagination: React.FC<any> = ({onChange, totalPages, forcePage, statusCards}) => {
+const Pagination: React.FC<IPagination> = ({onChange, totalPages, forcePage}) => {
     return (
-        statusCards === 'success' ?
         <ReactPaginate
             className="pagination"
             breakLabel="..."
@@ -13,7 +13,7 @@ const Pagination: React.FC<any> = ({onChange, totalPages, forcePage, statusCards
             pageCount={totalPages}
             previousLabel="←"
             forcePage={forcePage}
-        /> : <></>
+        />
     )
 
 }

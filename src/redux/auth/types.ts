@@ -3,16 +3,17 @@ export interface initialStateForm {
     eyeStatus: boolean
     isLoggedIn: boolean
     isLoading: boolean
-    user: userType,
+    isRegistration: boolean
+    userProfile: userType,
     errorPopup: popupType
 }
 
-type userType = {
+export type userType = {
     email: string
     name: string
 }
 
-type popupType = {
+export type popupType = {
     status: boolean
     text: string,
 }

@@ -1,19 +1,19 @@
 import React from "react"
 import ContentLoader from "react-content-loader"
+import style from "../../scss/modules/skeleton.module.scss"
 
 const Skeleton: React.FC = () => (
     <ContentLoader
         speed={2}
-        width={305}
+        width="100%"
         height={263}
         viewBox="0 0 305 263"
         backgroundColor="#ededed"
         foregroundColor="#dedede"
+        className={style.skeleton}
     >
-        <rect x="20" y="301" rx="3" ry="3" width="155" height="32" />
-        <rect x="203" y="301" rx="3" ry="3" width="32" height="32" />
-        <circle cx="127" cy="95" r="68" />
-        <rect x="70" y="178" rx="2" ry="2" width="117" height="24" />
+        <circle cx="50%" cy="95" r="68"/>
+        <rect x="auto" y="190" rx="2" ry="2" width="100%" height="24"/>
     </ContentLoader>
 )
 
