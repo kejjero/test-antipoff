@@ -18,10 +18,6 @@ const Main: React.FC<IMain> = ({popupError}) => {
                     <ProtectedRoute isLoggedIn={isLoggedIn}>
                         <Catalog/>
                 </ProtectedRoute>}/>
-                <Route path="/test-antipoff" element={
-                    <ProtectedRoute isLoggedIn={isLoggedIn}>
-                        <Catalog/>
-                    </ProtectedRoute>}/>
                 <Route path="/profile/:id" element={
                     <ProtectedRoute isLoggedIn={isLoggedIn}>
                         <Profile/>
