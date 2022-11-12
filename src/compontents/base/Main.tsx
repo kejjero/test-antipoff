@@ -5,8 +5,9 @@ import {useSelector} from "react-redux";
 import React from "react";
 import {selectAuth} from "../../redux/auth/authSlice";
 import ErrorPopup from "../errorPopup/ErrorPopup";
+import {IMain} from "./types";
 
-const Main: React.FC<any> = ({popupError}) => {
+const Main: React.FC<IMain> = ({popupError}) => {
     const {isLoggedIn} = useSelector(selectAuth);
 
     return (
@@ -16,8 +17,7 @@ const Main: React.FC<any> = ({popupError}) => {
                 <Route path="/" element={
                     <ProtectedRoute isLoggedIn={isLoggedIn}>
                         <Catalog/>
-                    </ProtectedRoute>
-                }/>
+                </ProtectedRoute>}/>
                 <Route path="/profile/:id" element={
                     <ProtectedRoute isLoggedIn={isLoggedIn}>
                         <Profile/>
