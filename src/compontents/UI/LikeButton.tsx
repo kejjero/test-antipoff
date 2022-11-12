@@ -1,10 +1,14 @@
 import React from "react";
 import style from "../../scss/modules/likeButton.module.scss"
+import {ILikeButton} from "./types";
 
-const LikeButton: React.FC<any> = ({isLiked, onClick}) => {
+const LikeButton: React.FC<ILikeButton> = ({isLiked, onClick}) => {
 
     return (
-        <button className={style.likeButton} onClick={(evt) => onClick(evt)}>
+        <button
+            className={style.likeButton}
+            onClick={(evt: React.MouseEvent<HTMLButtonElement>) => onClick(evt)}
+        >
             <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="16"
@@ -22,4 +26,4 @@ const LikeButton: React.FC<any> = ({isLiked, onClick}) => {
     )
 }
 
-export default LikeButton;
+export default React.memo(LikeButton);

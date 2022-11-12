@@ -1,23 +1,11 @@
 import React from "react";
+import {IButton} from "./types";
 
-interface IButton {
-    onClick?: any
-    children: string | any
-    className: any
-    type: "button" | "submit"
-}
+const Button: React.FC<IButton> = ({onClick, children, className, type}) => (
+    <button className={`button ${className}`} type={type} onClick={onClick}>
+        {children}
+    </button>
+)
 
-const Button: React.FC<IButton> = ({onClick, children, className, type}) => {
 
-    return (
-        <button
-            className={`button ${className}`}
-            type={type}
-            onClick={() => onClick()}
-        >
-            {children}
-        </button>
-    )
-}
-
-export default Button;
+export default React.memo(Button);
