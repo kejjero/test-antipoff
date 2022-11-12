@@ -1,4 +1,4 @@
-import {createSlice} from "@reduxjs/toolkit"
+import {createSlice, PayloadAction} from "@reduxjs/toolkit"
 import {RootState} from "../store"
 import {initialStateBase} from "./types"
 
@@ -11,10 +11,10 @@ const baseSlice = createSlice({
     name: 'base',
     initialState,
     reducers: {
-        setChangeBase(state, action) {
+        setChangeBase(state, action: PayloadAction<boolean>) {
             state.activeBase = action.payload
         },
-        getCurrentWidth(state, action) {
+        getCurrentWidth(state, action: PayloadAction<number>) {
             state.width = action.payload
         }
     },
