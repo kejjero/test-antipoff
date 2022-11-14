@@ -11,7 +11,7 @@
 ![SCSS](https://img.shields.io/badge/-SCSS-0d1117?style=for-the-badge&logo=sass)
 ![Styled-components](https://img.shields.io/badge/-Styled_components-0d1117?style=for-the-badge&logo=Styled-components)
 
-### [Backend авторизации](https://github.com/kejjero/movies-explorer-api)
+### [Backend авторизации](https://api.kejero.nomoredomains.icu)
 
 ## Инструкция для работы с проектом:
 
@@ -24,6 +24,6 @@ cd text-antipoff
 Для взаимодействия с API в корне проекта создайте файл `.env` и
 укажите данные переменные:
 ```
-REACT_APP_API_AUTH=https://api.kejero.diploma.nomoredomains.sbs
+REACT_APP_API_AUTH=https://api.kejero.nomoredomains.icu
 REACT_APP_API_PARTNERS=https://reqres.in/api
 ```
